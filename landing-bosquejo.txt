@@ -1,0 +1,13 @@
+Bosquejo Landing:
+- Genero musical Shoegaze
+- Historia y evolución del genero
+- Top bandas musicales del genero (Soda Stereo)
+- Razones para explorar el shoegaze
+- Apoyo a bandas locales derivadas del genero
+
+Secciones:
+# Encabezado
+# Contenido Principal
+# Llamada a la accion CTA
+# Pie de pagina
+# Secciones adicionales
