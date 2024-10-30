@@ -62,9 +62,10 @@ let getData = async () => {
         subscribers.innerHTML = ''
 
         for (let [date, count] of countSuscribers) {
+          const countIdx = [...countSuscribers?.keys()]?.indexOf(date) +  1 ?? 0
           let rowTemplate = `
                   <tr>
-                      <th scope="row">1</th>
+                      <th scope="row">${countIdx}</th>
                       <td>${date}</td>
                       <td>${count}</td>
                   </tr>`
