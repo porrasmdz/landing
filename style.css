@@ -23,7 +23,7 @@ CSS STRUCTURE:
 
 --------------------------------------------------------------*/
 section#home {
-  background:url(/public/concert-img.jpg)  
+  background:url(./public/concert-img.jpg)  
   center / cover no-repeat; 
   background-color:#444; 
   background-blend-mode: overlay;
