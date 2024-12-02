@@ -1,8 +1,15 @@
 const databaseURL = "https://landing-f6015-default-rtdb.firebaseio.com/data.json"
+
+const genresArray = ["Rock Indie", "Rock Alternativo", "Rap Latino", "Post Punk"]
 let sendData = () => {
   // Obtén los datos del formulario
   const formData = new FormData(form); //form es el id del elemento del form de donde quiero sacar los datos
-  const data = Object.fromEntries(formData.entries());
+  const data = Object.fromEntries(formData.entries());-1
+
+  if (data["genre"]== "-1") {
+    alert("DEBE ELEGIR UN GÉNERO MUSICAL")
+    return;
+  }
   data['saved'] = new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' })
   fetch(databaseURL, {
     method: 'POST', // Método de la solicitud
@@ -47,12 +54,10 @@ let getData = async () => {
       if (Object.keys(data).length > 0) {
         for (let key in data) {
 
-          let { email, saved } = data[key]
+          let { email, saved, genre } = data[key]
 
-          let date = saved.split(",")[0]
-
-          let count = countSuscribers.get(date) || 0;
-          countSuscribers.set(date, count + 1)
+          let count = parseInt(countSuscribers.get(genre) || 0);
+          countSuscribers.set(genre, parseInt(count + 1))
         }
       }
       // END
@@ -61,12 +66,13 @@ let getData = async () => {
 
         subscribers.innerHTML = ''
 
-        for (let [date, count] of countSuscribers) {
-          const countIdx = [...countSuscribers?.keys()]?.indexOf(date) +  1 ?? 0
+        for (let [genre, count] of countSuscribers) {
+          
+          const selectedGenre = (genre === undefined)? "NA" : genresArray[parseInt(genre) - 1] 
+          
           let rowTemplate = `
                   <tr>
-                      <th scope="row">${countIdx}</th>
-                      <td>${date}</td>
+                      <td>${selectedGenre}</td>
                       <td>${count}</td>
                   </tr>`
           subscribers.innerHTML += rowTemplate
@@ -83,7 +89,6 @@ let getData = async () => {
 }
 
 let loaded = () => {
-  console.log('Iframes e Images cargadas')
   let myform = document.getElementById("form")
   myform.addEventListener("submit", (eventSubmit) => {
     eventSubmit.preventDefault()
