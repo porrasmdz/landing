@@ -22,6 +22,12 @@ CSS STRUCTURE:
 2. GENERAL TYPOGRAPHY
 
 --------------------------------------------------------------*/
+section#home {
+  background:url(/images/concert-img.jpg)  
+  center / cover no-repeat; 
+  background-color:#444; 
+  background-blend-mode: overlay;
+}
 body {
   --heading-font: "Schibsted Grotesk", Roboto, sans-serif;
   --heading-font-weight: 400;
